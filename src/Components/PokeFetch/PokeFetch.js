@@ -9,6 +9,8 @@ class PokeFetch extends Component {
       pokeInfo: '',
       pokeSprite: '',
       pokeName: '',
+      visible: false,
+      timer: 10
     }
   }
 
@@ -25,15 +27,38 @@ class PokeFetch extends Component {
           pokeSprite: res.sprites.front_default,
           pokeName: res.species.name,
         })
+      setInterval(() => this.tick(), 1000);
+      this.resetTimer()
       })
       .catch((err) => console.log(err))
   }
+
+
+  tick(){
+    if (this.state.timer > 0){
+      this.setState({
+        timer: this.state.timer - 1
+      })
+    }
+  }
+
+  resetTimer(){
+    if (this.state.timer === 0){
+      this.setState({
+        timer: this.state.timer = 10
+      })
+    }
+  }
+
+  // componentWillUnmount(){
+
+  // }
 
   render() {
     return (
       <div className={'wrapper'}>
         <button className={'start'} onClick={() => this.fetchPokemon()}>Start!</button>
-        <h1 className={'timer'} >Timer Display</h1>
+        <h1 className={'timer'} >{this.state.timer}</h1>
         <div className={'pokeWrap'}>
           <img className={'pokeImg'} src={this.state.pokeSprite} />
           <h1 className={'pokeName'}>{this.state.pokeName}</h1>
@@ -42,5 +67,8 @@ class PokeFetch extends Component {
     )
   }
 }
+
+// componentDidMount();
+// componentDidUpdate();
 
 export default PokeFetch;

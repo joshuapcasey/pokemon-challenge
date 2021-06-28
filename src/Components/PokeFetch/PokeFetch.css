@@ -28,13 +28,52 @@
   margin-left: 18vw;
 }
 
+
+@keyframes pokemon{
+  0% {filter: brightness(0%)}
+  10% {filter: brightness(0%)}
+  20% {filter: brightness(0%)}
+  30% {filter: brightness(0%)}
+  40% {filter: brightness(0%)}
+  50% {filter: brightness(0%)}
+  60% {filter: brightness(0%)}
+  70% {filter: brightness(0%)}
+  80% {filter: brightness(0%)}
+  95% {filter: brightness(10%)}
+  100% {filter: brightness(100%)}
+}
+
 .pokeImg {
   width: 500px;
+  animation: filter 10s finite;
+    animation-name: pokemon;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 11s;
+}
+
+@keyframes pokeName{
+  0% {opacity: 0%}
+  10% {opacity: 0%}
+  20% {opacity: 0%}
+  30% {opacity: 0%}
+  40% {opacity: 0%}
+  50% {opacity: 0%}
+  60% {opacity: 0%}
+  70% {opacity: 0%}
+  80% {opacity: 0%}
+  95% {opacity: 10%}
+  100% {opacity: 100%}
 }
 
 .pokeName {
+  /* display: none; */
   font-family: 'Press Start 2P', cursive;
   text-transform: uppercase;
   margin-top: -50px;
+  animation: opacity 10s finite;
+    animation-name: pokeName;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 11s;
 }
-
