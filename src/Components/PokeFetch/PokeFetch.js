@@ -10,11 +10,29 @@ class PokeFetch extends Component {
       pokeSprite: '',
       pokeName: '',
       visible: false,
-      timer: 10
+      timer: 10,
+      // timerRunning: true
     }
   }
 
+  componentDidMount() {
+    console.log('Component did mount')
+
+  }
+
+  componentDidUpdate() {
+    console.log('component did update',)
+    this.countdown = setInterval(() => 
+      this.tick(), 1000
+    );
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.countdown)
+  }
+
   fetchPokemon() {
+    // this.setState({ timerRunning: false, timeRemaining: 10 })
     let min = Math.ceil(1);
     let max = Math.floor(152);
     let pokeNum = Math.floor(Math.random() * (max - min) + min);
@@ -27,8 +45,7 @@ class PokeFetch extends Component {
           pokeSprite: res.sprites.front_default,
           pokeName: res.species.name,
         })
-      setInterval(() => this.tick(), 1000);
-      this.resetTimer()
+      // setInterval(() => this.tick(), 1000);
       })
       .catch((err) => console.log(err))
   }
@@ -42,17 +59,6 @@ class PokeFetch extends Component {
     }
   }
 
-  resetTimer(){
-    if (this.state.timer === 0){
-      this.setState({
-        timer: this.state.timer = 10
-      })
-    }
-  }
-
-  // componentWillUnmount(){
-
-  // }
 
   render() {
     return (
@@ -68,7 +74,5 @@ class PokeFetch extends Component {
   }
 }
 
-// componentDidMount();
-// componentDidUpdate();
 
 export default PokeFetch;
